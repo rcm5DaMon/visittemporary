@@ -1,66 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dealer Visit Documentation</title>
-
-  <!-- Custom Styling -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f6f9;
-      text-align: center;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    .container {
-      text-align: center;
-      background-color: #fff;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 100%;
-    }
-
-    button {
-      padding: 15px 30px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      background-color: #007bff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Visit Check In</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS if needed -->
 </head>
 <body>
-
-  <div class="container">
-    <h1>Dealer Visit Documentation</h1>
-    <p>Click the button below to open the Dealer Visit documentation form.</p>
-    <button onclick="window.location.href='https://script.google.com/a/*/macros/s/AKfycbxCM76AuyYFa6pOceOqw_7llG0aHQL8g6IJWE2PgE1xUY_YkKgZQcK85tlS_GE9XVTF/exec'">
-      Go to Form
-    </button>
-  </div>
-
+    <h1>Sales Visit Check In</h1>
+    <!-- Check In Button -->
+    <a href="https://script.google.com/a/*/macros/s/AKfycbyACsIhdNQvhNv6vx7hXOoE9pzm-oHSR8cnqtkNycf4vc2xdducUqqCupbCXl4Wk0E/exec" class="check-in-btn">
+        Check In
+    </a>
 </body>
 </html>
