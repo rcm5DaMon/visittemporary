@@ -1,127 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Dropdowns</title>
-    <style>
-        select { width: 250px; margin: 10px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dealer Visit Documentation</title>
+
+  <!-- Custom Styling -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f6f9;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    <h1>Dynamic Dropdowns with Search</h1>
 
-    <form id="dataForm">
-        <!-- Brand Dropdown -->
-        <select id="brand" required>
-            <option value="">Select Brand</option>
-        </select><br>
+  <div class="container">
+    <h1>Dealer Visit Documentation</h1>
+    <p>Click the button below to open the Dealer Visit documentation form.</p>
+    <button onclick="window.location.href='https://script.google.com/a/*/macros/s/AKfycbxCM76AuyYFa6pOceOqw_7llG0aHQL8g6IJWE2PgE1xUY_YkKgZQcK85tlS_GE9XVTF/exec'">
+      Go to Form
+    </button>
+  </div>
 
-        <!-- Depo Dropdown -->
-        <select id="depo" required disabled>
-            <option value="">Select Depo</option>
-        </select><br>
-
-        <!-- SC Name Dropdown -->
-        <select id="scName" required disabled>
-            <option value="">Select SC Name</option>
-        </select><br>
-
-        <!-- Dealer Name Dropdown -->
-        <select id="dealerName" required disabled>
-            <option value="">Select Dealer Name</option>
-        </select><br>
-
-        <input type="submit" value="Submit">
-    </form>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Replace this URL with your Google Apps Script URL
-        const googleSheetDataUrl = "AKfycbzmctlSBjOWBs7hK5ED4oVzVtwmolz7klsvi24UwFse";
-
-        // Function to populate the dropdowns
-        function populateDropdown(selectId, options) {
-            const select = document.getElementById(selectId);
-            select.innerHTML = "<option value=''>Select</option>"; // Clear existing options
-            options.forEach(option => {
-                const opt = document.createElement("option");
-                opt.value = option;
-                opt.textContent = option;
-                select.appendChild(opt);
-            });
-        }
-
-        // Fetch data from Google Sheets
-        function fetchData() {
-            $.get(googleSheetDataUrl, function(data) {
-                // Populate the brand dropdown
-                populateDropdown("brand", data.brands);
-            });
-        }
-
-        // Function to handle brand selection change
-        function onBrandChange() {
-            const brand = document.getElementById("brand").value;
-            if (!brand) return;
-
-            $.get(googleSheetDataUrl, function(data) {
-                // Filter depots by selected brand
-                const filteredDepots = data.depots.filter((depot, index) => data.brands[index] === brand);
-                populateDropdown("depo", filteredDepots);
-            });
-
-            // Reset SC Name and Dealer Name dropdowns
-            document.getElementById("depo").disabled = false;
-            document.getElementById("scName").disabled = true;
-            document.getElementById("dealerName").disabled = true;
-        }
-
-        // Function to handle depo selection change
-        function onDepoChange() {
-            const brand = document.getElementById("brand").value;
-            const depo = document.getElementById("depo").value;
-            if (!depo) return;
-
-            $.get(googleSheetDataUrl, function(data) {
-                // Filter SC names by brand and depo
-                const filteredSCNames = data.scNames.filter((sc, index) => 
-                    data.brands[index] === brand && data.depots[index] === depo);
-                populateDropdown("scName", filteredSCNames);
-            });
-
-            // Enable SC Name dropdown
-            document.getElementById("scName").disabled = false;
-            document.getElementById("dealerName").disabled = true;
-        }
-
-        // Function to handle SC Name selection change
-        function onSCNameChange() {
-            const brand = document.getElementById("brand").value;
-            const depo = document.getElementById("depo").value;
-            const scName = document.getElementById("scName").value;
-            if (!scName) return;
-
-            $.get(googleSheetDataUrl, function(data) {
-                // Filter Dealer Names by brand, depo, and scName
-                const filteredDealerNames = data.dealerNames.filter((dealer, index) => 
-                    data.brands[index] === brand && data.depots[index] === depo && data.scNames[index] === scName);
-                populateDropdown("dealerName", filteredDealerNames);
-            });
-
-            // Enable Dealer Name dropdown
-            document.getElementById("dealerName").disabled = false;
-        }
-
-        // Initialize the page and dropdowns
-        $(document).ready(function() {
-            fetchData();
-
-            // Event listeners for dropdown changes
-            document.getElementById("brand").addEventListener("change", onBrandChange);
-            document.getElementById("depo").addEventListener("change", onDepoChange);
-            document.getElementById("scName").addEventListener("change", onSCNameChange);
-        });
-    </script>
 </body>
 </html>
